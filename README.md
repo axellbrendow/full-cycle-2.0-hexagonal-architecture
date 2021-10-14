@@ -11,6 +11,9 @@ go get github.com/satori/go.uuid
 go get github.com/stretchr/testify
 go get github.com/mattn/go-sqlite3
 go install github.com/golang/mock/mockgen@v1.5.0
+
+sudo apt-get update
+sudo apt-get install -y sqlite3
 ```
 
 ## Generate mocks
