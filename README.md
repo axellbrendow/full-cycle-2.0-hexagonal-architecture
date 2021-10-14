@@ -9,6 +9,7 @@ go get github.com/asaskevich/govalidator
 go get github.com/golang/mock
 go get github.com/satori/go.uuid
 go get github.com/stretchr/testify
+go get github.com/mattn/go-sqlite3
 go install github.com/golang/mock/mockgen@v1.5.0
 ```
 
