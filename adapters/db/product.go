@@ -3,11 +3,17 @@ package db
 import (
 	"database/sql"
 
+	_ "github.com/mattn/go-sqlite3"
+
 	"github.com/full-cycle-2.0-hexagonal-architecture/application"
 )
 
 type ProductDb struct {
 	db *sql.DB
+}
+
+func NewProductDb(db *sql.DB) *ProductDb {
+	return &ProductDb{db: db}
 }
 
 func (p *ProductDb) Get(id string) (application.IProduct, error) {
