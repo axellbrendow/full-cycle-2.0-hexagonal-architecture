@@ -4,6 +4,10 @@ type ProductService struct {
 	Persistence IProductPersistence
 }
 
+func NewProductService(persistence IProductPersistence) *ProductService {
+	return &ProductService{Persistence: persistence}
+}
+
 func (s *ProductService) Get(id string) (IProduct, error) {
 	product, err := s.Persistence.Get(id)
 	if err != nil {

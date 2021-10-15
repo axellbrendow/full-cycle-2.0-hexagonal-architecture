@@ -22,6 +22,12 @@ sudo apt-get install -y sqlite3
 mockgen -destination=application/mocks/application.go -source=application/product.go application
 ```
 
+## Running the application
+
+```sh
+go run main.go
+```
+
 ## Testing the application
 
 ```sh
