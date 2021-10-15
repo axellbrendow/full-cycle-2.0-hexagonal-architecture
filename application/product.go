@@ -21,7 +21,7 @@ type IProduct interface {
 	GetPrice() float64
 }
 
-type IProduceService interface {
+type IProductService interface {
 	Get(id string) (IProduct, error)
 	Create(name string, price float64) (IProduct, error)
 	Enable(product IProduct) (IProduct, error)
