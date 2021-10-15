@@ -21,20 +21,8 @@ func setUp() {
 		log.Fatal(err.Error())
 	}
 
-	createTable(Db)
+	db.CreateTable(Db)
 	createProduct(Db)
-}
-
-func createTable(db *sql.DB) {
-	query := "create table products(id string, name string, price float, status string);"
-
-	stmt, err := db.Prepare(query)
-
-	if err != nil {
-		log.Fatal(err.Error())
-	}
-
-	stmt.Exec()
 }
 
 func createProduct(db *sql.DB) {

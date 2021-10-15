@@ -2,6 +2,7 @@ package db
 
 import (
 	"database/sql"
+	"log"
 
 	_ "github.com/mattn/go-sqlite3"
 
@@ -14,6 +15,18 @@ type ProductDb struct {
 
 func NewProductDb(db *sql.DB) *ProductDb {
 	return &ProductDb{db: db}
+}
+
+func CreateTable(db *sql.DB) {
+	query := "create table products(id string, name string, price float, status string);"
+
+	stmt, err := db.Prepare(query)
+
+	if err != nil {
+		log.Fatal(err.Error())
+	}
+
+	stmt.Exec()
 }
 
 func (p *ProductDb) Get(id string) (application.IProduct, error) {
