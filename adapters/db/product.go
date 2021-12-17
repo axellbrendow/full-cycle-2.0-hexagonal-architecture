@@ -18,7 +18,7 @@ func NewProductDb(db *sql.DB) *ProductDb {
 }
 
 func CreateTable(db *sql.DB) {
-	query := "create table products(id string, name string, price float, status string);"
+	query := "create table if not exists products(id string, name string, price float, status string);"
 
 	stmt, err := db.Prepare(query)
 
