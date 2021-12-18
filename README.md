@@ -42,7 +42,31 @@ go run main.go cli --action get --id $productid
 
 go run main.go http --help
 go run main.go http  # Start the web server in another terminal
+
+# Finds the created product
 curl http://localhost:8080/product/$productid
+
+# Creates a product
+curl -X POST -d '{ "name": "Mouse", "price": 27.8 }' http://localhost:8080/product
+
+# Forces a deserialization error
+curl -X POST -d '{ "name": "Mouse", "price": "WEIRD PRICE" }' http://localhost:8080/product
+
+# Forces a business rule error
+curl -X POST -d '{ "name": "Mouse", "price": -100 }' http://localhost:8080/product
+
+# Lists all products. Must print 2 products.
+sqlite3 cli_and_web.sqlite3 "select * from products"
+
+# Enables the product created with CLI command
+curl -X PATCH http://localhost:8080/product/$productid/enable
+
+go run main.go cli --action get --id $productid
+
+# Disables the product created with CLI command
+curl -X PATCH http://localhost:8080/product/$productid/disable
+
+go run main.go cli --action get --id $productid
 ```
 
 ## Testing the application
