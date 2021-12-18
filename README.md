@@ -10,6 +10,8 @@ go get github.com/golang/mock
 go get github.com/satori/go.uuid
 go get github.com/stretchr/testify
 go get github.com/mattn/go-sqlite3
+go get github.com/urfave/negroni
+go get github.com/gorilla/mux
 go install github.com/golang/mock/mockgen@v1.5.0
 go install github.com/spf13/cobra/cobra@latest
 # make sure to add $HOME/go/bin to your path
@@ -24,10 +26,11 @@ sudo apt-get install -y sqlite3
 mockgen -destination=application/mocks/application.go -source=application/product.go application
 ```
 
-## Adding CLI command
+## Adding commands with cobra
 
 ```sh
 cobra add cli  # Creates the `go run main.go cli` command
+cobra add http  # Creates the `go run main.go http` command
 ```
 
 ## Running the application
@@ -36,6 +39,10 @@ cobra add cli  # Creates the `go run main.go cli` command
 go run main.go cli --help
 productid=$(go run main.go cli --action create --product Mouse --price 27.8 | cut -d ' ' -f 3)
 go run main.go cli --action get --id $productid
+
+go run main.go http --help
+go run main.go http  # Start the web server in another terminal
+curl http://localhost:8080/product/$productid
 ```
 
 ## Testing the application

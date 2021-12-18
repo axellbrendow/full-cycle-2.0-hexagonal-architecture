@@ -13,7 +13,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var Db, _ = sql.Open("sqlite3", "cli.sqlite3")
+var Db, _ = sql.Open("sqlite3", "cli_and_web.sqlite3")
 var productDb = db.NewProductDb(Db)
 var productService = application.ProductService{Persistence: productDb}
 
